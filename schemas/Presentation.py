@@ -6,6 +6,6 @@ from schemas.Base import Base
 
 
 class Presentation(IntIdPkMixin, Base):
-    __tablename__ = 'presentation'
+    __tablename__ = "presentation"
 
     name: Mapped[str] = mapped_column()

@@ -6,6 +6,6 @@ from schemas.mixins.int_id_pk import IntIdPkMixin
 
 
 class Transaction(IntIdPkMixin, Base):
-    __tablename__ = 'transaction'
+    __tablename__ = "transaction"
 
     tariff: Mapped[str] = mapped_column()
