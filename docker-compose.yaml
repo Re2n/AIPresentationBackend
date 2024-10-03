@@ -1,0 +1,21 @@
+services:
+  database:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'AIPresentation'
+    networks:
+      - backend
+    ports:
+      - "5431:5432"
+    volumes:
+      - database-pg:/var/lib/postgresql/data
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  database-pg:
