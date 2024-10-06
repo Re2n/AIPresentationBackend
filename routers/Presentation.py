@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -19,3 +21,9 @@ async def create_presentation(
 ):
     file_path = await presentation_service.create_presentation(presentation, session)
     return file_path
+
+@router.get("/test", response_class=FileResponse)
+async def test_presentation():
+    file_path = '123.pdf'
+    await asyncio.sleep(5)
+    return FileResponse(file_path, media_type="application/pdf", filename="test.pdf")
