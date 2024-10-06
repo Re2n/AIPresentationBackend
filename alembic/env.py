@@ -9,7 +9,7 @@ from alembic import context
 
 from config.Database import DATABASE_URL
 from schemas.Base import Base
-from schemas import Presentation, Transaction
+from schemas import User, Action
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

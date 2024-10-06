@@ -11,10 +11,10 @@ from depends import presentation_service
 from models.Presentation import PresentationCreate
 
 
-router = APIRouter(tags=["Presentation"])
+presentation_router = APIRouter(tags=["Presentation"])
 
 
-@router.post("/create", response_class=FileResponse)
+@presentation_router.post("/create", response_class=FileResponse)
 async def create_presentation(
     session: Annotated[AsyncSession, Depends(db.session_getter)],
     presentation: PresentationCreate,
@@ -22,7 +22,7 @@ async def create_presentation(
     file_path = await presentation_service.create_presentation(presentation, session)
     return file_path
 
-@router.get("/test", response_class=FileResponse)
+@presentation_router.get("/test", response_class=FileResponse)
 async def test_presentation():
     file_path = '123.pdf'
     await asyncio.sleep(5)

@@ -1,8 +1,10 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
 class PresentationCreate(BaseModel):
-    url: str
-    description: str
-    specs: str
-    category: str
+    url: Optional[str]
+    description: Optional[str]
+    specs: Optional[str]
+    category: Optional[str]

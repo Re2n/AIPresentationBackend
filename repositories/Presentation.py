@@ -1,7 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.Presentation import PresentationCreate
-from schemas.Presentation import Presentation
 
 
 class PresentationRepository:
@@ -10,7 +9,7 @@ class PresentationRepository:
         self, presentation_create: PresentationCreate, session: AsyncSession
     ):
         # ...
-        presentation = Presentation(
+        presentation = PresentationCreate(
             name="aboba",
         )
         file_path = "ananas.jpg"

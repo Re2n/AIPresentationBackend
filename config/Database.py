@@ -24,4 +24,5 @@ class Db:
             yield session
 
 
+
 db = Db(DATABASE_URL)

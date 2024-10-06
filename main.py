@@ -5,8 +5,13 @@ from fastapi import FastAPI
 
 
 from config.Database import db
+from routers.User import user_router
+from schemas.Action import Action
 from schemas.Base import Base
-from routers.Presentation import router
+from routers.Presentation import presentation_router
+from sqladmin import Admin, ModelView
+
+from views.UserAdmin import UserAdmin, ActionAdmin
 
 
 @asynccontextmanager
@@ -18,7 +23,12 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(router)
+admin = Admin(app, db.engine)
+
+#app.include_router(presentation_router)
+app.include_router(user_router)
+admin.add_view(UserAdmin)
+admin.add_view(ActionAdmin)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
