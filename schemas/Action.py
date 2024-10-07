@@ -1,12 +1,8 @@
-from email.policy import default
-
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, relationship
+from sqlalchemy.orm import Mapped
 from sqlalchemy.testing.schema import mapped_column
 from schemas.Base import Base
 from schemas.mixins.int_id_pk import IntIdPkMixin
-from schemas import User
-
 
 
 class Action(IntIdPkMixin, Base):
@@ -26,4 +22,3 @@ class Action(IntIdPkMixin, Base):
     actionCheckBalance: Mapped[int] = mapped_column(default=0)
     actionSuccessGeneration: Mapped[int] = mapped_column(default=0)
     actionSuccessPayment: Mapped[int] = mapped_column(default=0)
-

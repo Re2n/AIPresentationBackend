@@ -14,16 +14,17 @@ from models.Presentation import PresentationCreate
 presentation_router = APIRouter(tags=["Presentation"])
 
 
-@presentation_router.post("/create", response_class=FileResponse)
-async def create_presentation(
-    session: Annotated[AsyncSession, Depends(db.session_getter)],
-    presentation: PresentationCreate,
-):
-    file_path = await presentation_service.create_presentation(presentation, session)
-    return file_path
+# @presentation_router.post("/create", response_class=FileResponse)
+# async def create_presentation(
+#     session: Annotated[AsyncSession, Depends(db.session_getter)],
+#     presentation: PresentationCreate,
+# ):
+#     file_path = await presentation_service.create_presentation(presentation, session)
+#     return file_path
+
 
 @presentation_router.get("/test", response_class=FileResponse)
 async def test_presentation():
-    file_path = '123.pdf'
+    file_path = "123.pdf"
     await asyncio.sleep(5)
     return FileResponse(file_path, media_type="application/pdf", filename="test.pdf")

@@ -24,5 +24,6 @@ class Db:
             yield session
 
 
-
 db = Db(DATABASE_URL)
+credentials = [env.ADMIN_USER, env.ADMIN_PASSWORD]
+secret_key = env.SECRET_KEY

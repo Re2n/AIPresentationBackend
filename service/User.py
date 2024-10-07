@@ -14,9 +14,9 @@ class UserService:
         stmt = select(User).where(User.senderId == user.senderId)
         result = await session.execute(stmt)
         if result.scalar():
-            return {'User already exists'}
+            return {"error": "User already exists"}
         new_user = await self.repository.create_user(session, user)
-        return {'user': new_user, 'status': 200}
+        return {"user": new_user, "status": 200}
 
     async def check_balance(self, session: AsyncSession, senderId: int):
         res = await self.repository.check_balance(session, senderId)

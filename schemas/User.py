@@ -13,6 +13,6 @@ class User(IntIdPkMixin, Base):
 
     senderId: Mapped[int] = mapped_column(unique=True)
     nickname: Mapped[str] = mapped_column()
-    username: Mapped[str]= mapped_column(nullable=True)
+    username: Mapped[str] = mapped_column(nullable=True)
     balanceRub: Mapped[int] = mapped_column(default=0)
     balanceGeneration: Mapped[int] = mapped_column(default=0)
