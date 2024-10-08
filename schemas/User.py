@@ -1,5 +1,3 @@
-from enum import unique
-
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
