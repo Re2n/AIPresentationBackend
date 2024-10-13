@@ -6,6 +6,7 @@ from fastapi.params import Depends
 
 from config.Database import db
 from depends import user_service
+from models.ActionModel import ActionModel
 from models.User import UserCreate
 
 
@@ -21,9 +22,14 @@ async def register_user(
     return res
 
 
-@user_router.post("/checkBalance/{senderId}")
+@user_router.get("/checkBalance/{senderId}")
 async def check_balance(
     senderId: int, session: AsyncSession = Depends(db.session_getter)
 ):
     res = await user_service.check_balance(session, senderId)
+    return res
+
+@user_router.put("/add_action")
+async def add_action(senderId: int, action: ActionModel, session: AsyncSession = Depends(db.session_getter)):
+    res = await user_service.add_action(session, senderId, action)
     return res
