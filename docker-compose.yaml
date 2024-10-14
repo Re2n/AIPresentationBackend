@@ -1,4 +1,12 @@
 services:
+  app:
+    image: fastapi-app
+    build: .
+    networks:
+      - backend
+    ports:
+      - "5466:5466"
+    restart: always
   database:
     image: postgres:16
     restart: always
@@ -12,6 +20,7 @@ services:
       - "5431:5432"
     volumes:
       - database-pg:/var/lib/postgresql/data
+
 
 networks:
   backend:
