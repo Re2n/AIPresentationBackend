@@ -22,7 +22,9 @@ class UserRepository:
     async def check_balance(self, session: AsyncSession, senderId: int):
         stmt = select(User.balanceRub).where(User.senderId == senderId)
         result = await session.execute(stmt)
-        return result.scalar()
+        stmt1 = select(User.balanceGeneration).where(User.senderId == senderId)
+        result1 = await session.execute(stmt1)
+        return result.scalar(), result1.scalar()
 
     async def add_action(self, session: AsyncSession, senderId: int, action: ActionModel):
         match action:

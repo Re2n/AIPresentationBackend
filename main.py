@@ -8,6 +8,8 @@ from routers.Presentation import presentation_router
 from sqladmin import Admin
 from service.AdminAuth import AdminAuth
 from views.UserAdmin import UserAdmin, ActionAdmin
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 @asynccontextmanager
@@ -19,6 +21,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 authentication_backend = AdminAuth(secret_key=secret_key)
 admin = Admin(app, db.engine, authentication_backend=authentication_backend)
 

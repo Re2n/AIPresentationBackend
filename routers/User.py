@@ -21,13 +21,12 @@ async def register_user(
     res = await user_service.create_user(session, create_user)
     return res
 
-
-@user_router.get("/checkBalance/{senderId}")
+@user_router.get("/{senderId}/checkBalance")
 async def check_balance(
     senderId: int, session: AsyncSession = Depends(db.session_getter)
 ):
     res = await user_service.check_balance(session, senderId)
-    return res
+    return {'status': 200, 'balanceRub': res[0], 'balanceGeneration': res[1]}
 
 @user_router.put("/add_action")
 async def add_action(senderId: int, action: ActionModel, session: AsyncSession = Depends(db.session_getter)):
